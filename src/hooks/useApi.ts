@@ -241,4 +241,16 @@ export const useApi = () => ({
 
         return res.data;
     },
+
+    createAlert: async (keyword: string, location: string, userId: string) => {
+        const token = localStorage.getItem('authToken');
+        const res = await api.post('/alerts' , {
+            keyword,
+            location,
+            userId,
+        }, { headers: {
+            Authorization: `Bearer ${token}`,
+        },}
+        );
+    },
 });
